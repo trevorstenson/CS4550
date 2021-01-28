@@ -2,33 +2,32 @@ Please fill in answers to the questions below:
 
 
 1. What's your name?
-
+Trevor Stenson
 
 2. What hostname did you deploy to?
-
+hw02.downwind.xyz
 
 3. What's the link to your repository on github with your code?
-
+https://github.com/trevorstenson/CS4550
 
 4. How many HTML / CSS tutorial exercises did you do?
-
+10.
 
 5. How comfortable do you feel with HTML and CSS now?
-
+I am very comfortable with HTML/CSS.
 
 6. How many JS tutorial exercises did you do?
-
+I did five.
 
 7. How comfortable do you feel with JS now?
-
+I am very comfortable with JavaScript.
 
 8. Do all of your HTML pages pass the W3C HTML validator?
 (https://validator.w3.org/)
-
+Yes!
 
 9. Which parts of this assignment did you have trouble with, if any?
-
-
+Nothing really.
 
 
 
