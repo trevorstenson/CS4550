@@ -5,7 +5,6 @@ const randomSecret = () => {
 }
 
 const testSecret = (guess, secret) => {
-  console.log('secret is: ', secret)
   if (!isFour(guess)) {
     return {errorMsg: "Guess must be a length of four."};
   } else if (!isUnique(guess)) {
