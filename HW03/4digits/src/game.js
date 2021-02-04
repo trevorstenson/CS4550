@@ -5,13 +5,14 @@ const randomSecret = () => {
 }
 
 const testSecret = (guess, secret) => {
+  console.log('secret is: ', secret)
   if (!isFour(guess)) {
     return {errorMsg: "Guess must be a length of four."};
   } else if (!isUnique(guess)) {
     return {errorMsg: "Ensure your input is four unique digits."}
   } else {
-    let valueMatches = [...guess].filter(c => secret.includes(c)).length;
     let placeMatches = [...guess].map((c, i) => [c, secret[i]]).filter(([a, b]) => a === b).length;
+    let valueMatches = ([...guess].filter(c => secret.includes(c)).length) - placeMatches;
     let hintString = `${placeMatches} bulls, ${valueMatches} cows`
     return {guess: guess, hint: hintString};
   }
