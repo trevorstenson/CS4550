@@ -77,7 +77,6 @@ const App = () => {
   }
 
   const guess = (guess) => {
-    console.log('seceret: ', secret)
     let nextResult = testSecret(guess, secret);
     if (nextResult.errorMsg) {
       setErr(nextResult.errorMsg);
