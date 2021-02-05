@@ -65,52 +65,63 @@ const Outcome = ({won, secret, reset}) => {
 }
 
 const App = () => {
-  const [secret, setSecret] = useState(randomSecret());
-  const [results, setResults] = useState([]);
-  const [remaining, setRemaining] = useState(8);
-  const [errString, setErr] = useState("");
+  const [state, setState] = useState({
+    secret: randomSecret(),
+    results: [],
+    remaining: 8,
+    errString: ""
+  })
 
   const resetGame = () => {
-    setSecret(randomSecret());
-    setResults([]);
-    setRemaining(8);
+    setState({
+      secret: randomSecret(),
+      results: [],
+      remaining: 8,
+      errString: ""
+    })
   }
 
   const guess = (guess) => {
-    let nextResult = testSecret(guess, secret);
+    let nextResult = testSecret(guess, state.secret);
     if (nextResult.errorMsg) {
-      setErr(nextResult.errorMsg);
+      setState({
+        ...state,
+        errString: nextResult.errorMsg
+      })
     } else {
-      setErr("");
-      setResults([...results, nextResult]);
-      setRemaining(remaining - 1);
+      setState({
+        ...state,
+        results: [...state.results, nextResult],
+        remaining: state.remaining - 1,
+        errString: ""
+      })
     }
   }
 
-  const isGameWon = gameOver(secret, results);
-  const isGameLost = remaining === 0;
+  const isGameWon = gameOver(state.secret, state.results);
+  const isGameLost = state.remaining === 0;
   
   if (isGameWon) {
-    return <Outcome won={true} secret={secret} reset={resetGame}/>
+    return <Outcome won={true} secret={state.secret} reset={resetGame}/>
   } else if (isGameLost) {
-    return <Outcome won={false} secret={secret} reset={resetGame}/>
+    return <Outcome won={false} secret={state.secret} reset={resetGame}/>
   } else {
     return (
       <div className="App">
         <div className="container">
           <div className="row">
             <div className="column column-33">
-              <h2>Guesses Remaining: {remaining}</h2>
+              <h2>Guesses Remaining: {state.remaining}</h2>
             </div>
           </div>
-          <Error errString={errString}/>
+          <Error errString={state.errString}/>
           <Controls resetGame={resetGame} guess={guess}/>
           <div className="row">
             <div className="column column-10"></div>
             <div className="column column-20"><h4>Guess</h4></div>
             <div className="column column-25"><h4>Result</h4></div>
           </div>
-          {results.map((result, index) => {
+          {state.results.map((result, index) => {
             return (
               <div className="row" key={index}>
                 <div className="column column-10"></div>
